@@ -14,12 +14,14 @@ const features = [
 ];
 
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 const shots = [
-  { src: '/screens/clinics.webp', title: 'Clinics nearby', alt: 'Clinics Nearby screen listing dental clinics sorted by distance', body: 'Real clinics around you, nearest first.' },
-  { src: '/screens/treatments.webp', title: 'Treatments', alt: 'Treatments screen with search and category chips', body: 'Search and browse by category.' },
-  { src: '/screens/detail.webp', title: 'What to expect', alt: 'Teeth Cleaning detail screen with duration and follow-up info', body: 'Duration, follow-up and steps at a glance.' },
-  { src: '/screens/rabi.webp', title: 'Ask Rabi', alt: 'Rabi, the DENTRA assistant, with suggested dental questions', body: 'Educational answers, not a diagnosis.' },
-  { src: '/screens/scan.webp', title: 'Guided scan', alt: 'Dental Scan screen with five mouth regions to capture', body: 'Five regions, one at a time.' },
+  { src: `${basePath}/screens/clinics.webp`, title: 'Clinics nearby', alt: 'Clinics Nearby screen listing dental clinics sorted by distance', body: 'Real clinics around you, nearest first.' },
+  { src: `${basePath}/screens/treatments.webp`, title: 'Treatments', alt: 'Treatments screen with search and category chips', body: 'Search and browse by category.' },
+  { src: `${basePath}/screens/detail.webp`, title: 'What to expect', alt: 'Teeth Cleaning detail screen with duration and follow-up info', body: 'Duration, follow-up and steps at a glance.' },
+  { src: `${basePath}/screens/rabi.webp`, title: 'Ask Rabi', alt: 'Rabi, the DENTRA assistant, with suggested dental questions', body: 'Educational answers, not a diagnosis.' },
+  { src: `${basePath}/screens/scan.webp`, title: 'Guided scan', alt: 'Dental Scan screen with five mouth regions to capture', body: 'Five regions, one at a time.' },
 ];
 
 const faqs = [
@@ -65,11 +67,11 @@ export default function Home() {
 
           <div className="hero-art rise" style={{ animationDelay: '120ms' }}>
             <picture>
-              <source media="(prefers-reduced-motion: reduce)" srcSet="/mascot/bunny-still.webp" />
-              <img className="peek" src="/mascot/bunny.webp" width="238" height="276" alt="" />
+              <source media="(prefers-reduced-motion: reduce)" srcSet={`${basePath}/mascot/bunny-still.webp`} />
+              <img className="peek" src={`${basePath}/mascot/bunny.webp`} width="238" height="276" alt="" />
             </picture>
             <div className="phone">
-              <img src="/screens/hero.webp" width="600" height="1201" alt="DENTRA welcome screen: A closer look at your smile" />
+              <img src={`${basePath}/screens/hero.webp`} width="600" height="1201" alt="DENTRA welcome screen: A closer look at your smile" />
             </div>
           </div>
         </section>
