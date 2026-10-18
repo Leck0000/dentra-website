@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'export',
   basePath: '/dentra-website',
+  assetPrefix: '/dentra-website',
   images: { unoptimized: true },
 };
 
