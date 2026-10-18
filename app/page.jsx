@@ -66,10 +66,6 @@ export default function Home() {
           </div>
 
           <div className="hero-art rise" style={{ animationDelay: '120ms' }}>
-            <picture>
-              <source media="(prefers-reduced-motion: reduce)" srcSet={`${basePath}/mascot/bunny-still.webp`} />
-              <img className="peek" src={`${basePath}/mascot/bunny.webp`} width="238" height="276" alt="" />
-            </picture>
             <div className="phone">
               <img src={`${basePath}/screens/hero.webp`} width="600" height="1201" alt="DENTRA welcome screen: A closer look at your smile" />
             </div>

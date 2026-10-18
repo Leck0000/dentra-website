@@ -6,7 +6,30 @@ const outfit = Outfit({ subsets: ['latin'], display: 'swap' });
 export const metadata = {
   title: 'DENTRA — Dental screening, made simple',
   description:
-    'DENTRA is a dental screening app that helps you check on your oral health, find nearby clinics, and understand treatments. Coming soon on Google Play.',
+    'Screen at home. Understand your options. Find a dentist nearby. DENTRA is coming soon to Google Play.',
+  openGraph: {
+    type: 'website',
+    url: 'https://leck0000.github.io/dentra-website/',
+    siteName: 'DENTRA',
+    title: 'DENTRA — A smarter first step for your smile',
+    description:
+      'Screen at home. Understand your options. Find a dentist nearby. Coming soon to Google Play.',
+    images: [
+      {
+        url: 'https://leck0000.github.io/dentra-website/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'DENTRA, a dental screening app, coming soon on Google Play',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'DENTRA — A smarter first step for your smile',
+    description:
+      'Screen at home. Understand your options. Find a dentist nearby. Coming soon to Google Play.',
+    images: ['https://leck0000.github.io/dentra-website/og.png'],
+  },
 };
 
 export const viewport = { themeColor: '#fbfbfd' };

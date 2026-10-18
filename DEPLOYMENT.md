@@ -57,16 +57,9 @@ Updated `next.config.mjs` for subdirectory hosting:
 - Added `.nojekyll` file to prevent GitHub Pages from ignoring `_next` folder
 - Fixed paths for:
   - Hero screen image
-  - Mascot images (bunny)
   - Screenshot gallery (5 app screens)
 
 ### 6. UI Improvements
-
-#### Mascot Positioning
-- Moved bunny mascot from hero section to bottom-right corner
-- Changed position to `fixed` for persistent visibility while scrolling
-- Updated animation to slide up from bottom
-- Currently hidden with `display: none` (can be re-enabled by removing this line)
 
 #### Mobile Navigation Optimization
 - Added `white-space: nowrap` to prevent menu text wrapping
@@ -82,15 +75,14 @@ dentra-website/
 │   └── workflows/
 │       └── deploy.yml          # GitHub Actions deployment workflow
 ├── app/
-│   ├── bunny.jsx               # Mascot video component
 │   ├── globals.css             # All styles
+│   ├── icon.svg                # Favicon
 │   ├── layout.jsx              # Root layout
 │   ├── page.jsx                # Home page
 │   └── reveal.jsx              # Scroll reveal animations
 ├── public/
 │   ├── .nojekyll               # GitHub Pages config
-│   ├── bunny.webm              # Mascot video
-│   ├── mascot/                 # Mascot images
+│   ├── og.png                  # Social share image
 │   └── screens/                # App screenshots
 ├── .gitignore
 ├── next.config.mjs             # Next.js configuration
@@ -149,14 +141,6 @@ dentra-website/
 
 ## Maintenance Notes
 
-### To Show the Mascot
-Remove or comment out this line in `app/globals.css` (line ~171):
-```css
-.peek {
-  /* display: none; */ /* Remove this line to show mascot */
-}
-```
-
 ### To Update Images
 1. Place new images in `public/` folder
 2. Update paths in `app/page.jsx` using the `basePath` variable:
@@ -170,19 +154,16 @@ All styles are in `app/globals.css`. The file uses CSS custom properties (variab
 ## Commits History
 1. Initial commit: DENTRA promo site
 2. Merge remote-tracking branch 'origin/main'
-3. Hide mascot for now
-4. Add GitHub Pages deployment workflow
-5. Configure basePath for GitHub Pages deployment
-6. Add assetPrefix for GitHub Pages image paths
-7. Fix image paths for GitHub Pages deployment
-8. Optimize navigation bar for mobile devices
+3. Add GitHub Pages deployment workflow
+4. Configure basePath for GitHub Pages deployment
+5. Add assetPrefix for GitHub Pages image paths
+6. Fix image paths for GitHub Pages deployment
+7. Optimize navigation bar for mobile devices
+8. Show mascot peeking at bottom right of hero phone
 
 ## Next Steps (Optional)
 - [ ] Add custom domain (if desired)
 - [ ] Add Google Analytics
-- [ ] Add OpenGraph meta tags for social sharing
-- [ ] Add favicon
-- [ ] Show mascot when ready
 - [ ] Add contact form (requires backend)
 
 ## Troubleshooting
