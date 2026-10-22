@@ -6,20 +6,20 @@ const outfit = Outfit({ subsets: ['latin'], display: 'swap' });
 export const metadata = {
   title: 'DENTRA — Dental screening, made simple',
   description:
-    'Screen at home. Understand your options. Find a dentist nearby. DENTRA is coming soon to Google Play.',
+    'Screen at home. Understand your options. Find a dentist nearby. On Android and iPhone.',
   openGraph: {
     type: 'website',
     url: 'https://leck0000.github.io/dentra-website/',
     siteName: 'DENTRA',
     title: 'DENTRA — A smarter first step for your smile',
     description:
-      'Screen at home. Understand your options. Find a dentist nearby. Coming soon to Google Play.',
+      'Screen at home. Understand your options. Find a dentist nearby. On Android and iPhone.',
     images: [
       {
         url: 'https://leck0000.github.io/dentra-website/og.png',
         width: 1200,
         height: 630,
-        alt: 'DENTRA, a dental screening app, coming soon on Google Play',
+        alt: 'DENTRA, a dental screening app: a smarter first step for your smile',
       },
     ],
   },
@@ -27,7 +27,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'DENTRA — A smarter first step for your smile',
     description:
-      'Screen at home. Understand your options. Find a dentist nearby. Coming soon to Google Play.',
+      'Screen at home. Understand your options. Find a dentist nearby. On Android and iPhone.',
     images: ['https://leck0000.github.io/dentra-website/og.png'],
   },
 };

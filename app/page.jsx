@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import InstallIOS from './install-ios';
 import Phone3D from './phone-3d';
 import Reveal from './reveal';
+import Scanner from './scanner';
 import ToothAnatomy from './tooth-anatomy';
 import useScrollProgress from './use-scroll-progress';
 
@@ -22,6 +24,7 @@ const ICONS = {
   plus: <path d="M12 5v14M5 12h14" />,
   phone: <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />,
   route: <path d="M3 11l18-8-8 18-2-8z" />,
+  mobile: <><rect x="7" y="2.5" width="10" height="19" rx="2.5" /><path d="M11 18.5h2" /></>,
   play: <path d="M6 3.5v17L19.5 12z" />,
   arrow: <path d="M12 5v14M6 13l6 6 6-6" />,
 };
@@ -42,7 +45,7 @@ const heroScreens = [
 ];
 
 const story = [
-  { name: 'scan', tag: 'Scan', status: 'Prototype', title: 'Capture your smile.', body: 'Guided steps walk you through five views of your mouth, one at a time, with quality checks along the way.', alt: 'Guided scan screen with five capture regions' },
+  { name: 'scan', tag: 'Scan', title: 'Capture your smile.', body: 'Guided steps walk you through five views of your mouth, one at a time, with quality checks along the way.', alt: 'Guided scan screen with five capture regions' },
   { name: 'rabi', tag: 'Understand', title: 'Make sense of it.', body: 'Read what common treatments involve, or ask Rabi, the AI assistant, in plain language.', alt: 'Rabi assistant with suggested questions' },
   { name: 'clinics', tag: 'Act', title: 'See a dentist.', body: 'Find real clinics around you, nearest first. Call or get directions in one tap.', alt: 'Clinics list sorted by distance' },
 ];
@@ -58,19 +61,19 @@ const treatments = {
 };
 
 const features = [
-  { icon: 'pin', title: 'Clinic Finder', status: 'Working', body: 'Real dental clinics near you on a live map and in a list, with distance, rating and reviews.' },
-  { icon: 'book', title: 'Treatment Library', status: 'Working', body: 'General, cosmetic, orthodontic and surgical treatments explained, with a step-by-step timeline.' },
-  { icon: 'chat', title: 'Rabi, AI assistant', status: 'Working', body: 'Ask about oral health or a treatment and get educational answers. Guidance, not diagnosis.' },
-  { icon: 'camera', title: 'Guided scan', status: 'Prototype', body: 'Five capture regions with positioning help and quality checks. Analysis results are a demo for now.' },
-  { icon: 'calendar', title: 'History', status: 'Prototype', body: 'A month view and cards for past screenings. Shows sample data until the backend is connected.' },
-  { icon: 'shield', title: 'Privacy controls', status: 'Prototype', body: 'Consent toggles, security settings and account deletion, designed in from the start.' },
+  { icon: 'pin', title: 'Clinic Finder', body: 'Real dental clinics near you on a live map and in a list, with distance, rating and reviews.' },
+  { icon: 'book', title: 'Treatment Library', body: 'General, cosmetic, orthodontic and surgical treatments explained, with a step-by-step timeline.' },
+  { icon: 'chat', title: 'Rabi, AI assistant', body: 'Ask about oral health or a treatment and get educational answers. Guidance, not diagnosis.' },
+  { icon: 'camera', title: 'Guided scan', body: 'Five capture regions with positioning help and quality checks. Analysis results are a demo for now.' },
+  { icon: 'calendar', title: 'History', body: 'A month view and cards for past screenings. Shows sample data until the backend is connected.' },
+  { icon: 'shield', title: 'Privacy controls', body: 'Consent toggles, security settings and account deletion, designed in from the start.' },
 ];
 
 const faqs = [
   ['Is DENTRA a diagnosis?', 'No. DENTRA gives general information and screening guidance to help you decide when to see a dentist. It does not diagnose any condition.'],
   ['Does it replace my dentist?', 'No. Think of it as a first step. Always see a licensed dentist for care.'],
-  ['When can I get it?', 'DENTRA is coming soon to Google Play.'],
-  ['Which phones does it run on?', 'Android.'],
+  ['How do I get it?', 'On Android, get it from Google Play. On iPhone, open the DENTRA web app in Safari and add it to your Home Screen, as shown above.'],
+  ['Which phones does it run on?', 'Android phones through the app, and iPhone through the web app.'],
   ['Are clinic prices and services real?', 'Clinic locations come from real map data. Service lists in the app are estimates, so confirm details with the clinic directly.'],
 ];
 
@@ -132,7 +135,8 @@ function Nav() {
           <a href="#anatomy">Anatomy</a>
           <a href="#treatments">Treatments</a>
           <a href="#clinics">Find a dentist</a>
-          <a href="#features">Features</a>
+          <a href="#scanner">Scanner</a>
+          <a href="#install">iPhone</a>
           <a href="#faq">FAQ</a>
         </nav>
         <PlayBadge small />
@@ -157,7 +161,6 @@ function Hero() {
       <div className="hero-bg" />
       <div className="wrap hero-grid">
         <div className="hero-text rise">
-          <span className="chip"><span className="dot live" />Android</span>
           <h1>
             Your dental health,
             <br />
@@ -168,10 +171,10 @@ function Hero() {
           </p>
           <div className="hero-cta">
             <PlayBadge />
-            <a href="#how" className="btn">How it works <Icon name="arrow" size={16} /></a>
+            <a href="#install" className="btn"><Icon name="mobile" size={16} />Install on iPhone</a>
           </div>
           <dl className="facts">
-            <div><dt>Platform</dt><dd>Android</dd></div>
+            <div><dt>Platform</dt><dd>Android and iPhone</dd></div>
             <div><dt>Made for</dt><dd>The Philippines</dd></div>
             <div><dt>Role</dt><dd>Guidance, not diagnosis</dd></div>
           </dl>
@@ -228,7 +231,6 @@ function Story() {
             <div className="card story-card fade-up" key={step}>
               <div className="story-tag">
                 <span className="n">0{step + 1} · {s.tag}</span>
-                {s.status && <span className="chip proto">{s.status}</span>}
               </div>
               <h3>{s.title}</h3>
               <p className="muted">{s.body}</p>
@@ -340,7 +342,6 @@ function Features() {
             <Reveal key={f.title} delay={(i % 3) * 80} className="card feat">
               <div className="feat-top">
                 <span className="feat-icon"><Icon name={f.icon} /></span>
-                <span className={`chip ${f.status === 'Working' ? 'ok' : 'proto'}`}>{f.status}</span>
               </div>
               <h3>{f.title}</h3>
               <p>{f.body}</p>
@@ -356,7 +357,7 @@ function Trust() {
   const points = [
     ['Not a diagnosis', 'Screening guidance to help you decide when to see a dentist.'],
     ['Your dentist comes first', 'For any concern, a licensed dentist is the right call.'],
-    ['Honest about status', 'Features marked Prototype use sample data for now.'],
+    ['Clear about what’s ready', 'Scan results and history still use sample data for now.'],
   ];
   return (
     <section className="section trust-section">
@@ -407,9 +408,12 @@ function Faq() {
         </div>
 
         <Reveal className="card cta-final">
-          <h2>Coming soon to Google Play.</h2>
+          <h2>Get DENTRA on your phone.</h2>
           <p className="muted">Screen at home, understand your options and find a dentist nearby, all in one app.</p>
-          <PlayBadge />
+          <div className="cta-row">
+            <PlayBadge />
+            <a href="#install" className="btn"><Icon name="mobile" size={16} />Install on iPhone</a>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -426,8 +430,10 @@ export default function Home() {
         <ToothAnatomy />
         <Treatments />
         <Clinics />
+        <Scanner />
         <Features />
         <Trust />
+        <InstallIOS />
         <Faq />
       </main>
       <footer className="footer">
