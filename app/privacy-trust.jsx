@@ -4,8 +4,8 @@ import Reveal from './reveal';
 const points = [
   ['shield', 'Not a diagnosis', 'Screening guidance to help you decide when to see a dentist. It does not diagnose any condition.'],
   ['user', 'Your dentist comes first', 'For any concern, a licensed dentist is the right call.'],
-  ['info', 'Clear about what’s ready', 'Scan results and history use sample data for now. The scanner is a research prototype.'],
-  ['lock', 'Privacy controls', 'Consent toggles, security settings and account deletion, designed in from the start.'],
+  ['info', 'Clear about what’s ready', 'Scan results and history show sample data for now. The camera is a capstone prototype.'],
+  ['lock', 'Privacy settings', 'Consent and security settings are built into the app. They don’t save between sessions yet.'],
 ];
 
 export default function PrivacyTrust() {

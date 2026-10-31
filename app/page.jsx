@@ -30,7 +30,7 @@ export default function Home() {
             DENTRA provides general information and screening guidance. It is not a medical diagnosis. Always consult a licensed dentist.
           </p>
           <p className="disclaimer">
-            The DENTRA scanner is a capstone research prototype, tested on typodont (artificial teeth) models. It has not been clinically validated.
+            The DENTRA camera is a capstone prototype. It has only been tested on practice models of teeth, and it does not detect or diagnose anything.
           </p>
           <p className="fine">A capstone project. © {new Date().getFullYear()} DENTRA.</p>
         </div>

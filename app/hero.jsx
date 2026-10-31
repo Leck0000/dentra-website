@@ -8,8 +8,8 @@ import { HomeScreenBadge, PlayBadge } from '../components/store-badges';
 const screens = [
   { name: 'clinics', icon: 'pin', title: 'Clinics nearby', sub: 'Nearest first', alt: 'Clinics Nearby screen listing dental clinics sorted by distance' },
   { name: 'treatments', icon: 'book', title: 'Treatment library', sub: 'Know what to expect', alt: 'Treatments screen with search and category chips' },
-  { name: 'rabi', icon: 'chat', title: 'Ask Rabi', sub: 'Plain-language answers', alt: 'Rabi, the DENTRA assistant, with suggested dental questions' },
-  { name: 'scan', icon: 'camera', title: 'Guided scan', sub: 'Five views, one at a time', alt: 'Dental Scan screen with five mouth regions to capture' },
+  { name: 'rabi', icon: 'chat', title: 'AI assistant', sub: 'Plain-language answers', alt: 'The DENTRA AI assistant, with suggested dental questions' },
+  { name: 'scan', icon: 'camera', title: 'Guided capture', sub: 'Prototype, demo results', alt: 'Guided capture screen with five mouth regions to photograph (prototype)' },
 ];
 
 export default function Hero() {
@@ -25,13 +25,13 @@ export default function Hero() {
     <section className="hero" id="top">
       <div className="wrap hero-in">
         <div className="hero-text rise">
-          <p className="eyebrow">Dental screening, made simple</p>
+          <p className="eyebrow">Clinics, treatments and answers in one app</p>
           <h1>
             A smarter first step
             <br />
-            <span className="grad">for your smile.</span>
+            <span className="grad">before your next dental visit.</span>
           </h1>
-          <p className="lead">Screen at home. Understand your options. Find a dentist nearby.</p>
+          <p className="lead">Find a dentist near you, learn what common treatments involve, and get answers in plain language.</p>
           <div className="hero-cta">
             <HomeScreenBadge />
             <PlayBadge />

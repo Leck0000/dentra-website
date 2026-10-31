@@ -149,7 +149,10 @@ export default function DeviceExplodedView() {
   const active = step >= 1 && step <= N ? step - 1 : -1;
   // While a step is active, only the top of the remaining stack stays visible
   // (dimmed, "next up"): dimmed parts overlapping each other read as a smudge.
+  // Assembled (step 0), the boards are inside the wand, so only the housing and
+  // the sleeve show.
   const partClass = (i) => {
+    if (step === 0) return i > 1 ? ' is-hidden' : '';
     if (active === -1) return '';
     if (i === active) return ' is-active';
     return i > active + 1 ? ' is-hidden' : ' is-dim';
@@ -162,7 +165,7 @@ export default function DeviceExplodedView() {
         : `Step ${N + 1} of ${N + 1}: ${FINAL.desc}`;
 
   return (
-    <section className="device" id="device" aria-label="Inside the DENTRA scanner, a research prototype">
+    <section className="device" id="device" aria-label="Inside the DENTRA camera, a capstone prototype">
       {/* Pinned, scroll-driven view */}
       <div className="device-track" ref={trackRef}>
         <div className="device-stage" ref={stageRef}>
@@ -186,12 +189,12 @@ export default function DeviceExplodedView() {
 
             <div className="device-panel">
               <p className="device-eyebrow">
-                The device <span className="device-tag">Research prototype</span>
+                The device <span className="device-tag">Capstone prototype</span>
               </p>
               <div className="device-labels">
                 <div className={`device-label${step === 0 ? ' on' : ''}`}>
                   <h2 className="device-title">See what&apos;s inside.</h2>
-                  <p className="muted">Scroll to open up the DENTRA scanner, one part at a time.</p>
+                  <p className="muted">Scroll to open up our prototype camera, one part at a time.</p>
                 </div>
                 {STEPS.map((s, i) => (
                   <div key={s.id} className={`device-label${step === i + 1 ? ' on' : ''}`} aria-hidden="true">
@@ -227,7 +230,7 @@ export default function DeviceExplodedView() {
       <div className="device-static">
         <div className="wrap">
           <p className="device-eyebrow">
-            The device <span className="device-tag">Research prototype</span>
+            The device <span className="device-tag">Capstone prototype</span>
           </p>
           <h2 className="device-title">See what&apos;s inside.</h2>
           <ol className="device-static-list">

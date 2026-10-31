@@ -5,16 +5,16 @@ import Icon from '../components/icon';
 import Reveal from './reveal';
 
 const treatments = {
-  General: { name: 'Teeth cleaning', what: 'Removes plaque and tartar that brushing can miss.', time: '30–60 min', steps: ['Check-up and exam', 'Scaling removes tartar', 'Polishing', 'Home care tips'] },
+  General: { name: 'Teeth cleaning', what: 'Removes plaque and tartar that brushing can miss.', time: '30–60 min', steps: ['Check-up and exam', 'Hardened plaque (tartar) scraped off', 'Polishing', 'Home care tips'] },
   Cosmetic: { name: 'Teeth whitening', what: 'Lightens stains for a brighter-looking smile.', time: '60–90 min', steps: ['Shade check', 'Gums protected', 'Whitening gel applied', 'New shade reviewed'] },
-  Orthodontics: { name: 'Braces', what: 'Gradually moves teeth into better alignment.', time: '1–2 hrs to fit', steps: ['Consult and X-rays', 'Brackets bonded', 'Wire placed', 'Adjustment visits'] },
+  Orthodontics: { name: 'Braces', what: 'Gradually moves teeth into better alignment.', time: '1–2 hrs to fit', steps: ['Consult and X-rays', 'Small brackets glued to teeth', 'Wire placed', 'Adjustment visits'] },
   Surgical: { name: 'Tooth extraction', what: 'Removes a tooth that can’t be saved or is crowding others.', time: '20–40 min', steps: ['Exam and X-ray', 'Area numbed', 'Tooth removed', 'Aftercare guidance'] },
 };
 
 // Sample exchanges showing the kind of answer Rabi gives. Educational only.
 const chats = [
   { q: 'How often should I get a cleaning?', a: 'Many dentists suggest a check-up and cleaning about every six months. Your dentist may suggest a different schedule for you.' },
-  { q: 'What happens when braces are fitted?', a: 'Small brackets are bonded to your teeth and a wire is threaded through them. Fitting usually takes one to two hours, with adjustment visits after.' },
+  { q: 'What happens when braces are fitted?', a: 'Small brackets are glued to your teeth and a thin wire is threaded through them. Fitting usually takes one to two hours, with adjustment visits after.' },
   { q: 'Is whitening right for me?', a: 'It depends on your teeth and gums. A dentist can check whether whitening suits you and which option is safest.' },
 ];
 
@@ -64,7 +64,7 @@ export default function TreatmentsAI() {
           <Reveal delay={100} className="card panel">
             <div className="panel-head">
               <span className="icon-tile icon-tile-sm"><Icon name="chat" size={18} /></span>
-              <b>Ask Rabi</b>
+              <b>Ask the AI assistant</b>
               <span className="chip">Sample answers</span>
             </div>
             <div className="chat" key={chat} aria-live="polite">
@@ -78,7 +78,7 @@ export default function TreatmentsAI() {
                 </button>
               ))}
             </div>
-            <p className="note">Rabi gives educational answers in plain language. Guidance, not a diagnosis.</p>
+            <p className="note">The AI assistant gives general, educational answers in plain language. It is not medical advice or a diagnosis.</p>
           </Reveal>
         </div>
       </div>

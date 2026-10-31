@@ -1,9 +1,8 @@
-// Store-style badges (black, logo left, small line over a big line). The copy
-// is deliberately not the official badge text: DENTRA is not on the App Store
-// (iPhone uses the web app) and not yet on Google Play.
+// Store-style badges (black, logo left, small line over a big line). The Apple
+// badge never says "App Store": iPhone users get DENTRA as a web app.
 
 // Set to the Play Store listing URL once DENTRA is published; until then the
-// Play badge reads "Coming soon to" and is not a link.
+// Play badge is not a link. "Get it on" is the owner's call (2026-10-31).
 export const PLAY_URL = null;
 
 const AppleLogo = () => (
@@ -48,7 +47,7 @@ export function PlayBadge({ small = false }) {
     <>
       <PlayLogo />
       <span>
-        <small className="caps">{PLAY_URL ? 'Get it on' : 'Coming soon to'}</small>
+        <small className="caps">Get it on</small>
         <strong>Google Play</strong>
       </span>
     </>

@@ -4,17 +4,17 @@ import './globals.css';
 const outfit = Outfit({ subsets: ['latin'], display: 'swap' });
 
 export const metadata = {
-  title: 'DENTRA — Dental screening, made simple',
+  title: 'DENTRA — A smarter first step before your next dental visit',
   description:
-    'Screen at home. Understand your options. Find a dentist nearby. DENTRA is coming soon to Google Play.',
+    'Find dental clinics near you, learn what common treatments involve, and ask questions in plain language. DENTRA is coming soon to Google Play.',
   metadataBase: new URL('https://getdentra.site'),
   openGraph: {
     type: 'website',
     url: '/',
     siteName: 'DENTRA',
-    title: 'DENTRA — A smarter first step for your smile',
+    title: 'DENTRA — A smarter first step before your next dental visit',
     description:
-      'Screen at home. Understand your options. Find a dentist nearby. Coming soon to Google Play.',
+      'Find dental clinics near you, learn what common treatments involve, and ask questions in plain language. DENTRA is coming soon to Google Play.',
     images: [
       {
         url: '/og.png',
@@ -26,9 +26,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DENTRA — A smarter first step for your smile',
+    title: 'DENTRA — A smarter first step before your next dental visit',
     description:
-      'Screen at home. Understand your options. Find a dentist nearby. Coming soon to Google Play.',
+      'Find dental clinics near you, learn what common treatments involve, and ask questions in plain language. DENTRA is coming soon to Google Play.',
     images: ['/og.png'],
   },
 };

@@ -8,9 +8,9 @@ import Reveal from './reveal';
 const faqs = [
   ['Is DENTRA a diagnosis?', 'No. DENTRA gives general information and screening guidance to help you decide when to see a dentist. It does not diagnose any condition.'],
   ['Does it replace my dentist?', 'No. Think of it as a first step. Always see a licensed dentist for care.'],
-  ['What is the DENTRA scanner?', 'A handheld camera our capstone team built as a research prototype. It has been tested on typodont (artificial teeth) models only, has not been clinically validated, and is not for sale.'],
-  ['How do I get it?', 'On Android, DENTRA is coming soon to Google Play. On iPhone, open the DENTRA web app in Safari and add it to your Home Screen, as shown above.'],
-  ['Are clinic prices and services real?', 'Clinic locations come from real map data. Service lists in the app are estimates, so confirm details with the clinic directly.'],
+  ['What is the DENTRA camera?', 'A small handheld camera for taking photos inside the mouth, built by our capstone team as a prototype. It has only been tested on typodonts (practice models of teeth). It has not been proven for real dental care, and it does not detect or diagnose anything.'],
+  ['How do I get it?', 'On Android, DENTRA is coming soon to Google Play. The DENTRA web app works now in any browser. On iPhone, open it in Safari and add it to your Home Screen, as shown above.'],
+  ['Are clinic prices and services real?', 'Clinic locations come from real map data. Prices and service lists in the app are estimates, not confirmed by the clinics, so check details with the clinic directly.'],
 ];
 
 export default function Faq() {
@@ -38,7 +38,7 @@ export default function Faq() {
 
         <Reveal className="card cta-final">
           <h2>Get DENTRA on your phone.</h2>
-          <p className="muted">Screen at home, understand your options and find a dentist nearby.</p>
+          <p className="muted">Find a dentist near you, understand your options, and get answers in plain language.</p>
           <div className="cta-row">
             <HomeScreenBadge />
             <PlayBadge />
