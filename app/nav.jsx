@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Icon from '../components/icon';
-import PlayButton from '../components/play-button';
+import Brand from '../components/brand';
+import { PlayBadge } from '../components/store-badges';
 
 export default function Nav() {
   const [solid, setSolid] = useState(false);
@@ -17,10 +17,7 @@ export default function Nav() {
   return (
     <header className={`nav${solid ? ' solid' : ''}`}>
       <div className="wrap nav-in">
-        <a href="#top" className="brand">
-          <span className="brand-mark"><Icon name="tooth" size={18} /></span>
-          DENTRA
-        </a>
+        <Brand />
         <nav className="nav-links" aria-label="Primary">
           <a href="#device">The device</a>
           <a href="#how">How it works</a>
@@ -29,7 +26,7 @@ export default function Nav() {
           <a href="#install">iPhone</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <PlayButton small />
+        <PlayBadge small />
       </div>
     </header>
   );

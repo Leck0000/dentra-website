@@ -84,14 +84,6 @@ img, svg { display: block; max-width: 100%; }
 .btn:active { transform: scale(0.97); }
 .btn-primary { border: 0; background: var(--brand); color: #fff; box-shadow: 0 10px 26px rgba(44, 166, 164, 0.28); }
 a.btn-primary:hover { border: 0; box-shadow: 0 12px 30px rgba(44, 166, 164, 0.38); }
-.btn-sm { min-height: 38px; padding: 0 16px; font-size: 14px; box-shadow: none; }
-span.btn-play { cursor: default; }
-span.btn-play:active { transform: none; }
-.btn-play-short { display: none; }
-@media (max-width: 480px) {
-  .btn-sm .btn-play-full { display: none; }
-  .btn-sm .btn-play-short { display: inline; }
-}
 
 /* Store-style badges (components/store-badges.jsx) */
 .store-badge {
@@ -108,6 +100,10 @@ span.btn-play:active { transform: none; }
 a.store-badge:hover { transform: translateY(-1px); }
 a.store-badge:active { transform: scale(0.97); }
 span.store-badge { cursor: default; }
+.store-badge-sm { height: 42px; gap: 8px; padding: 0 14px 0 10px; border-radius: 9px; }
+.store-badge-sm svg { width: 21px; height: 21px; }
+.store-badge-sm small.caps { font-size: 8.5px; }
+.store-badge-sm strong { margin-top: 2px; font-size: 16px; }
 @media (max-width: 480px) { .hero-cta .store-badge, .cta-row .store-badge { min-width: 250px; } }
 
 .eyebrow { color: var(--teal-text); font-size: 15px; font-weight: 600; }
@@ -131,7 +127,7 @@ span.store-badge { cursor: default; }
 }
 .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-size: 17px; font-weight: 800; letter-spacing: 0.08em; }
-.brand-mark { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; color: #fff; background: var(--brand); }
+.brand-logo { flex: none; width: 32px; height: 32px; }
 .nav-links { display: none; gap: 28px; font-size: 14.5px; font-weight: 500; }
 .nav-links a { transition: color 0.2s; }
 .nav-links a:hover { color: var(--text); }
@@ -153,13 +149,13 @@ span.store-badge { cursor: default; }
   border-radius: 20px; background: #000; transform: translateX(-50%);
 }
 .phone-screen { position: relative; height: 100%; border-radius: calc(var(--pw) * 0.13); overflow: hidden; background: #fff; }
-.phone-screen img {
+.phone-screen > img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: top;
   opacity: 0; transform: scale(1.03);
   transition: opacity 0.5s ease, transform 0.7s var(--ease);
 }
-.phone-screen img.on { opacity: 1; transform: none; }
+.phone-screen > img.on { opacity: 1; transform: none; }
 .ring {
   position: absolute; left: 50%; top: 50%; translate: -50% -50%;
   width: min(520px, 92vw); aspect-ratio: 1; border-radius: 50%;
@@ -450,7 +446,7 @@ span.store-badge { cursor: default; }
 .ios-add-head b { color: #1c1c1e; font-size: 12px; }
 .ios-add-head .hl { padding: 2px 8px; border-radius: 8px; font-weight: 700; }
 .ios-add-card { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 12px; border-radius: 12px; background: #fff; }
-.ios-add-card .brand-mark { width: 44px; height: 44px; border-radius: 12px; }
+.ios-add-card .brand-logo { width: 44px; height: 44px; border-radius: 12px; }
 .ios-add-card small { display: block; color: var(--text-2); font-size: 11px; }
 .ios-toggle { justify-content: space-between; }
 .ios-switch { position: relative; width: 36px; height: 21px; border-radius: 11px; background: #4CAF93; }
@@ -467,7 +463,7 @@ span.store-badge { cursor: default; }
 .ios-home.on { opacity: 1; transform: none; }
 .ios-icon { display: grid; justify-items: center; gap: 4px; }
 .ios-icon:not(.dentra) > span:first-child { width: 44px; height: 44px; border-radius: 12px; background: rgba(255, 255, 255, 0.55); }
-.ios-icon.dentra .brand-mark { width: 44px; height: 44px; border-radius: 12px; animation: hl 1.6s ease-in-out infinite; }
+.ios-icon.dentra .brand-logo { width: 44px; height: 44px; border-radius: 12px; animation: hl 1.6s ease-in-out infinite; }
 .ios-icon small { color: var(--text); font-size: 9.5px; font-weight: 600; }
 .install-visual { position: relative; display: grid; place-items: center; }
 .install-visual .phone { --pw: min(270px, 64vw); }
@@ -482,8 +478,8 @@ span.store-badge { cursor: default; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
-  .reveal, .phone-screen img { transform: none !important; }
-  .phone-screen img { transition: opacity 0.2s ease; }
+  .reveal, .phone-screen > img { transform: none !important; }
+  .phone-screen > img { transition: opacity 0.2s ease; }
   .map-pulse { animation: none; opacity: 0.5; }
 }
 @media (prefers-reduced-transparency: reduce) {

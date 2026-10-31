@@ -1,5 +1,5 @@
 import DeviceExplodedView from '../components/device/DeviceExplodedView';
-import Icon from '../components/icon';
+import Brand from '../components/brand';
 import Faq from './faq';
 import FindDentist from './find-dentist';
 import Hero from './hero';
@@ -25,10 +25,7 @@ export default function Home() {
       </main>
       <footer className="footer">
         <div className="wrap">
-          <a href="#top" className="brand">
-            <span className="brand-mark"><Icon name="tooth" size={18} /></span>
-            DENTRA
-          </a>
+          <Brand />
           <p className="disclaimer">
             DENTRA provides general information and screening guidance. It is not a medical diagnosis. Always consult a licensed dentist.
           </p>

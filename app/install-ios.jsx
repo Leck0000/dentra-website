@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Reveal from './reveal';
+import { BrandMark } from '../components/brand';
 import { WEB_APP_URL } from './config';
 import { HomeScreenBadge } from '../components/store-badges';
 
@@ -19,11 +20,6 @@ const Svg = ({ children, size = 14 }) => (
   </svg>
 );
 const ShareIcon = ({ size }) => <Svg size={size}><path d="M12 3v12M8 7l4-4 4 4M6 11v9h12v-9" /></Svg>;
-const Tooth = ({ size = 18 }) => (
-  <Svg size={size}>
-    <path d="M7 3C4.5 3 3 5 3 7.5c0 3 1.5 4.5 2 7.5s1 6 2.5 6 1.5-4 2.5-6 1-2 2-2 1 0 2 2 1 6 2.5 6 2-3 2.5-6 2-4.5 2-7.5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z" />
-  </Svg>
-);
 
 function Demo({ step }) {
   return (
@@ -32,7 +28,7 @@ function Demo({ step }) {
       <div className="phone-screen ios-screen">
         <div className={`ios-page${step === 4 ? ' gone' : ''}`}>
           <div className="ios-app">
-            <span className="brand-mark ios-mark"><Tooth size={26} /></span>
+            <BrandMark className="ios-mark" />
             <b>DENTRA</b>
             <i /><i /><i className="short" />
           </div>
@@ -64,7 +60,7 @@ function Demo({ step }) {
             <span className="hl">Add</span>
           </div>
           <div className="ios-add-card">
-            <span className="brand-mark"><Tooth /></span>
+            <BrandMark />
             <div>
               <b>DENTRA</b>
               <small>DENTRA web app</small>
@@ -79,7 +75,7 @@ function Demo({ step }) {
           {Array.from({ length: 15 }, (_, i) =>
             i === 9 ? (
               <span key={i} className="ios-icon dentra">
-                <span className="brand-mark"><Tooth size={20} /></span>
+                <BrandMark />
                 <small>DENTRA</small>
               </span>
             ) : (

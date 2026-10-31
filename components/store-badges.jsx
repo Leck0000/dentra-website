@@ -1,8 +1,10 @@
-import { PLAY_URL } from './play-button';
-
 // Store-style badges (black, logo left, small line over a big line). The copy
 // is deliberately not the official badge text: DENTRA is not on the App Store
 // (iPhone uses the web app) and not yet on Google Play.
+
+// Set to the Play Store listing URL once DENTRA is published; until then the
+// Play badge reads "Coming soon to" and is not a link.
+export const PLAY_URL = null;
 
 const AppleLogo = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -40,7 +42,8 @@ export function HomeScreenBadge({ href = '#install', external = false }) {
   );
 }
 
-export function PlayBadge() {
+export function PlayBadge({ small = false }) {
+  const cls = `store-badge${small ? ' store-badge-sm' : ''}`;
   const body = (
     <>
       <PlayLogo />
@@ -51,8 +54,8 @@ export function PlayBadge() {
     </>
   );
   return PLAY_URL ? (
-    <a href={PLAY_URL} className="store-badge" target="_blank" rel="noopener noreferrer">{body}</a>
+    <a href={PLAY_URL} className={cls} target="_blank" rel="noopener noreferrer">{body}</a>
   ) : (
-    <span className="store-badge">{body}</span>
+    <span className={cls}>{body}</span>
   );
 }
