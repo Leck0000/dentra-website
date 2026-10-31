@@ -476,18 +476,49 @@ a.play-badge:active { transform: scale(0.97); }
 .inside-ui .rail { max-width: 420px; margin: 0; }
 @media (min-width: 960px) { .inside-ui { top: 50%; bottom: auto; transform: translateY(-50%); } }
 
-/* Scanner */
-.scanner { display: grid; gap: 40px; align-items: center; }
+/* Scanner — scroll-driven, tall section like tooth anatomy */
+.scanner-section { position: relative; height: 460vh; }
+.scanner { display: grid; gap: 40px; align-items: start; }
 @media (min-width: 960px) { .scanner { grid-template-columns: 1.1fr 0.9fr; } }
-.scanner-stage { position: relative; height: 520px; }
+.scanner-stage-wrapper { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; overflow: hidden; padding-top: 60px; }
+.scanner-stage { position: relative; width: 100%; height: 520px; display: grid; place-items: center; }
 @media (max-width: 640px) { .scanner-stage { height: 480px; } }
 .scanner-stage .callout { transition: none; }
 .callout.tag em { display: inline; }
 .callout.flip { flex-direction: row-reverse; }
 .scanner-stage { overflow: hidden; }
+.scanner-canvas {
+  position: absolute; inset: 0; opacity: 0;
+  cursor: grab; touch-action: pan-y; -webkit-user-select: none; user-select: none;
+  transition: opacity 0.8s var(--ease);
+}
+.scanner-section.ready .scanner-canvas { opacity: 1; }
+.scanner-canvas canvas { display: block; width: 100% !important; height: 100% !important; }
+.scanner-wait { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.skeleton {
+  width: min(40vw, 220px); aspect-ratio: 1 / 1.8; border-radius: 40% 40% 30% 30%;
+  background: linear-gradient(90deg, var(--mint) 25%, #f4fcfb 50%, var(--mint) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
+.inside-labels { position: absolute; inset: 0; pointer-events: none; }
 .drag-hint {
   position: absolute; left: 50%; bottom: 6px; translate: -50% 0;
   color: var(--text-3); font-size: 12.5px; font-weight: 500; pointer-events: none;
+}
+
+/* Right side content — sticky within the tall section */
+.scanner-content { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 60px; }
+.scanner-content .specs { margin-top: 28px; }
+.scanner-content .note { margin-top: 20px; }
+
+/* Progress rail */
+.scanner-rail { display: flex; gap: 6px; max-width: 460px; margin: 28px 0 0; padding: 0; list-style: none; }
+.scanner-rail li { flex: 1; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.scanner-rail span {
+  display: block; height: 100%; transform-origin: left; transform: scaleX(var(--f, 0));
+  background: linear-gradient(90deg, var(--g1), var(--g2));
 }
 
 /* iPhone install tutorial */

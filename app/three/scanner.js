@@ -81,6 +81,12 @@ function cylinderX(r, len, mat, x, y, z = 0) {
   return m;
 }
 
+// Smoothstep for easing
+const smooth = (a, b, x) => {
+  const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
+  return t * t * (3 - 2 * t);
+};
+
 export function mountScanner(container, { labels, onReady }) {
   const stage = createStage(container, { fov: 30, position: [0, 0.3, 6.6], target: [0, 0.1, 0] });
   const { scene, camera } = stage;
@@ -185,12 +191,13 @@ export function mountScanner(container, { labels, onReady }) {
   camModule.add(box(0.17, 0.016, 0.17, pcbGreen, 1.88, headY), camLens);
   device.add(parts, camModule);
 
+  // Anchors for labels - ordered to match the labels array in scanner.jsx
   const anchors = [
-    [camModule, 1.88, headY + 0.06, 0],
-    [device, 1.88 + 0.115 * Math.cos(Math.PI / 4), headTop, 0.064],
-    [board, -0.2, 0.08, -0.12],
-    [battery, -1.05, 0.1, 0.1],
-    [charger, -1.62, -0.03, -0.1],
+    [camModule, 1.88, headY + 0.06, 0],      // 0: Camera module
+    [device, 1.88 + 0.115 * Math.cos(Math.PI / 4), headTop, 0.064], // 1: NIR LEDs
+    [board, -0.2, 0.08, -0.12],              // 2: Pi Zero 2 W
+    [battery, -1.05, 0.1, 0.1],              // 3: 18650 battery
+    [charger, -1.62, -0.03, -0.1],           // 4: Charging board
   ].map(([parent, x, y, z]) => {
     const a = new THREE.Object3D();
     a.position.set(x, y, z);
@@ -211,8 +218,7 @@ export function mountScanner(container, { labels, onReady }) {
   shadow.position.y = -1.1;
   scene.add(shadow);
 
-  // Fit the device to the canvas (about 4.2 units long closed, 5.2 open);
-  // on tall screens stand it on a steeper diagonal
+  // Fit the device to the canvas
   let roll = 0.22;
   let room = 5;
   stage.onResize = (w, h) => {
@@ -222,37 +228,45 @@ export function mountScanner(container, { labels, onReady }) {
     room = portrait ? visibleH * 0.93 : (visibleH * w) / h;
   };
 
-  // Open/close on a critically damped spring so it can be reversed mid-way
-  let target = 0;
-  let open = 0;
-  let openVel = 0;
+  // Progress-driven animation (0 = closed, 1 = fully open)
+  let progress = 0;
   const spin = createSpin(container);
   const v = new THREE.Vector3();
   let first = true;
 
   stage.start((dt, time) => {
     spin.update(dt);
-    const w = (Math.PI * 2) / 0.55;
-    openVel += (-w * w * (open - target) - 2 * w * openVel) * dt;
-    open += openVel * dt;
-    const e = Math.min(1, Math.max(0, open));
 
+    // Animate opening based on scroll progress
+    // Progress goes 0->1, we map this to the open animation
+    const e = smooth(0.15, 0.85, progress); // Eased progress for the opening motion
+
+    // Top shell lifts up and back
     topShell.position.y = 1.1 * e;
     topShell.position.z = -0.35 * e;
+
+    // Internal components rise up and spread out
     board.position.set(0, 0.8 * e, -0.1 * e);
     ribbon.position.y = 0.8 * e;
     battery.position.set(0, 0.45 * e, 0.4 * e);
     charger.position.set(-0.2 * e, 0.4 * e, -0.35 * e);
     camModule.position.y = 0.95 * e;
+
+    // Sleeve slides forward and fades
     sleeve.position.x = 0.9 + 0.95 * e;
     clear.opacity = 0.14 * (1 - 0.6 * e);
 
+    // Scale to fit
     spinner.scale.setScalar(Math.min(1.3, room / (4.2 + e)));
+
+    // Idle rotation and sway
     const sway = still ? 0 : Math.sin(time * 0.45) * 0.1;
     spinner.rotation.set(0.5 + 0.35 * e + spin.tiltX, -0.3 + spin.rot + sway + spin.tiltY, roll);
     spinner.position.y = still ? 0 : Math.sin(time * 1.1) * 0.04;
 
     scene.updateMatrixWorld();
+
+    // Update label positions and visibility based on progress
     const cw = container.clientWidth;
     const ch = container.clientHeight;
     anchors.forEach((a, i) => {
@@ -264,6 +278,7 @@ export function mountScanner(container, { labels, onReady }) {
       const flip = x > cw * 0.62 ? ' translateX(calc(-100% + 24px))' : '';
       el.classList.toggle('flip', !!flip);
       el.style.transform = `translate(${x}px, ${((1 - v.y) / 2) * ch}px)${flip}`;
+      // Labels fade in as the scanner opens
       el.style.opacity = e;
     });
 
@@ -274,8 +289,8 @@ export function mountScanner(container, { labels, onReady }) {
   });
 
   return {
-    setOpen(isOpen) {
-      target = isOpen ? 1 : 0;
+    setProgress(p) {
+      progress = p;
     },
     dispose() {
       spin.dispose();

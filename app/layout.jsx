@@ -7,7 +7,7 @@ export const metadata = {
   title: 'DENTRA — Dental screening, made simple',
   description:
     'Screen at home. Understand your options. Find a dentist nearby. DENTRA is coming soon to Google Play.',
-  metadataBase: new URL('https://dentra-website-psi.vercel.app'),
+  metadataBase: new URL('https://getdentra.site'),
   openGraph: {
     type: 'website',
     url: '/',
