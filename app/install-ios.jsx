@@ -2,12 +2,26 @@
 
 import { useEffect, useState } from 'react';
 import Reveal from './reveal';
-
-// Set to the DENTRA web app's address to show an "Open the web app" button.
-const WEB_APP_URL = null;
+import { WEB_APP_URL } from './config';
 
 const steps = [
-  { title: 'Open DENTRA in Safari', body: 'Go to the DENTRA web app in Safari on your iPhone.' },
+  {
+    title: 'Open DENTRA in Safari',
+    body: (
+      <>
+        Go to the{' '}
+        <a
+          href={WEB_APP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="step-link"
+        >
+          DENTRA web app
+        </a>{' '}
+        in Safari on your iPhone.
+      </>
+    ),
+  },
   { title: 'Tap Share', body: 'Tap the Share button, the square with an arrow. On newer iOS versions, tap ••• first, then Share.' },
   { title: 'Tap Add to Home Screen', body: 'Scroll down the list and tap Add to Home Screen.' },
   { title: 'Tap Add', body: 'Keep the name DENTRA. If you see Open as Web App, leave it on. Then tap Add.' },
@@ -107,33 +121,40 @@ export default function InstallIOS() {
     <section className="section tint" id="install">
       <div className="wrap install">
         <Reveal>
-          <p className="eyebrow">On iPhone</p>
-          <h2 className="h2">Add DENTRA to your Home Screen.</h2>
-          <p className="muted sim-lead">iPhone users get DENTRA as a web app. Add it once and it opens from its own icon, like any other app.</p>
-          <ol className="steps">
-            {steps.map((s, i) => (
-              <li key={s.title}>
-                <button
-                  className={i === step ? 'on' : ''}
-                  aria-pressed={i === step}
-                  onClick={() => {
-                    setAuto(false);
-                    setStep(i);
-                  }}
-                >
-                  <span className="step-n">{i + 1}</span>
-                  <span>
-                    <b>{s.title}</b>
-                    <span className="muted">{s.body}</span>
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ol>
-          {WEB_APP_URL && (
-            <a href={WEB_APP_URL} className="btn install-open">Open the web app</a>
-          )}
-        </Reveal>
+                  <p className="eyebrow">On iPhone</p>
+                  <h2 className="h2">Add DENTRA to your Home Screen.</h2>
+                  <p className="muted sim-lead">iPhone users get DENTRA as a web app. Add it once and it opens from its own icon, like any other app.</p>
+                  {WEB_APP_URL && (
+                    <a
+                      href={WEB_APP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary install-open"
+                    >
+                      Open the web app
+                    </a>
+                  )}
+                  <ol className="steps">
+                    {steps.map((s, i) => (
+                      <li key={s.title}>
+                        <button
+                          className={i === step ? 'on' : ''}
+                          aria-pressed={i === step}
+                          onClick={() => {
+                            setAuto(false);
+                            setStep(i);
+                          }}
+                        >
+                          <span className="step-n">{i + 1}</span>
+                          <span>
+                            <b>{s.title}</b>
+                            <span className="muted">{s.body}</span>
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ol>
+                </Reveal>
         <Reveal delay={120} className="install-visual">
           <div className="ring" />
           <Demo step={step} />
