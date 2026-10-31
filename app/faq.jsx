@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Icon from '../components/icon';
-import PlayButton from '../components/play-button';
+import { HomeScreenBadge, PlayBadge } from '../components/store-badges';
 import Reveal from './reveal';
 
 const faqs = [
@@ -40,8 +40,8 @@ export default function Faq() {
           <h2>Get DENTRA on your phone.</h2>
           <p className="muted">Screen at home, understand your options and find a dentist nearby.</p>
           <div className="cta-row">
-            <PlayButton />
-            <a href="#install" className="btn"><Icon name="mobile" size={16} />Use it on iPhone</a>
+            <HomeScreenBadge />
+            <PlayBadge />
           </div>
         </Reveal>
       </div>

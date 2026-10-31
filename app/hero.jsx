@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Icon from '../components/icon';
 import Phone from '../components/phone';
-import PlayButton from '../components/play-button';
+import { HomeScreenBadge, PlayBadge } from '../components/store-badges';
 
 const screens = [
   { name: 'clinics', icon: 'pin', title: 'Clinics nearby', sub: 'Nearest first', alt: 'Clinics Nearby screen listing dental clinics sorted by distance' },
@@ -33,8 +33,8 @@ export default function Hero() {
           </h1>
           <p className="lead">Screen at home. Understand your options. Find a dentist nearby.</p>
           <div className="hero-cta">
-            <PlayButton />
-            <a href="#install" className="btn"><Icon name="mobile" size={16} />Use it on iPhone</a>
+            <HomeScreenBadge />
+            <PlayBadge />
           </div>
         </div>
 

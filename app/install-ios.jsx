@@ -3,9 +3,10 @@
 import { useEffect, useState } from 'react';
 import Reveal from './reveal';
 import { WEB_APP_URL } from './config';
+import { HomeScreenBadge } from '../components/store-badges';
 
 const steps = [
-  { title: 'Open DENTRA in Safari', body: 'Go to dentrascan.site in Safari on your iPhone, or tap Open the web app above.' },
+  { title: 'Open DENTRA in Safari', body: 'Go to dentrascan.site in Safari on your iPhone, or tap the Home Screen button above.' },
   { title: 'Tap Share', body: 'Tap the Share button, the square with an arrow. On newer iOS versions, tap ••• first, then Share.' },
   { title: 'Tap Add to Home Screen', body: 'Scroll down the list and tap Add to Home Screen.' },
   { title: 'Tap Add', body: 'Keep the name DENTRA. If you see Open as Web App, leave it on. Then tap Add.' },
@@ -108,16 +109,9 @@ export default function InstallIOS() {
           <p className="eyebrow">On iPhone</p>
           <h2 className="h2">Add DENTRA to your Home Screen.</h2>
           <p className="muted sim-lead">iPhone users get DENTRA as a web app. Add it once and it opens from its own icon, like any other app.</p>
-          {WEB_APP_URL && (
-            <a
-              href={WEB_APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary install-open"
-            >
-              Open the web app
-            </a>
-          )}
+          <div className="install-open">
+            <HomeScreenBadge href={WEB_APP_URL} external />
+          </div>
           <ol className="steps">
             {steps.map((s, i) => (
               <li key={s.title}>

@@ -2,7 +2,7 @@ import Icon from './icon';
 
 // Set to the Play Store listing URL once DENTRA is published; until then this
 // is a label, not a link.
-const PLAY_URL = null;
+export const PLAY_URL = null;
 
 export default function PlayButton({ small }) {
   const cls = `btn btn-primary btn-play${small ? ' btn-sm' : ''}`;

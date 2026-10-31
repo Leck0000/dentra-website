@@ -93,6 +93,23 @@ span.btn-play:active { transform: none; }
   .btn-sm .btn-play-short { display: inline; }
 }
 
+/* Store-style badges (components/store-badges.jsx) */
+.store-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 56px; padding: 0 20px 0 14px; border-radius: 12px;
+  background: #000; border: 1px solid #A6A6A6; color: #fff;
+  text-align: left; line-height: 1; white-space: nowrap;
+  transition: transform 0.12s ease-out;
+}
+.store-badge svg { flex: none; width: 28px; height: 28px; }
+.store-badge small { display: block; font-size: 11.5px; font-weight: 500; letter-spacing: 0.01em; }
+.store-badge small.caps { text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.06em; }
+.store-badge strong { display: block; margin-top: 3px; color: #fff; font-size: 21px; font-weight: 600; letter-spacing: -0.01em; }
+a.store-badge:hover { transform: translateY(-1px); }
+a.store-badge:active { transform: scale(0.97); }
+span.store-badge { cursor: default; }
+@media (max-width: 480px) { .hero-cta .store-badge, .cta-row .store-badge { min-width: 250px; } }
+
 .eyebrow { color: var(--teal-text); font-size: 15px; font-weight: 600; }
 .h2 { margin-top: 10px; font-size: clamp(36px, 6.4vw, 64px); font-weight: 800; letter-spacing: -0.035em; }
 .grad { background: linear-gradient(100deg, var(--g1), var(--g2) 55%, #1f8583); -webkit-background-clip: text; background-clip: text; color: transparent; }
