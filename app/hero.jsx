@@ -6,10 +6,10 @@ import Phone from '../components/phone';
 import { HomeScreenBadge, PlayBadge } from '../components/store-badges';
 
 const screens = [
-  { name: 'clinics', icon: 'pin', title: 'Clinics nearby', sub: 'Nearest first', alt: 'Clinics Nearby screen listing dental clinics sorted by distance' },
-  { name: 'treatments', icon: 'book', title: 'Treatment library', sub: 'Know what to expect', alt: 'Treatments screen with search and category chips' },
+  { name: 'clinics', icon: 'pin', title: 'Clinics nearby', sub: 'Nearest first', alt: 'DENTRA clinic finder showing nearby dental clinics on a map and in a list sorted by distance' },
+  { name: 'treatments', icon: 'book', title: 'Treatment library', sub: 'Know what to expect', alt: 'DENTRA treatment library listing common treatments with category and time estimates' },
   { name: 'rabi', icon: 'chat', title: 'AI assistant', sub: 'Plain-language answers', alt: 'The DENTRA AI assistant, with suggested dental questions' },
-  { name: 'scan', icon: 'camera', title: 'Guided capture', sub: 'Prototype, demo results', alt: 'Guided capture screen with five mouth regions to photograph (prototype)' },
+  { name: 'scan', icon: 'camera', title: 'Guided capture', sub: 'Prototype, demo results', alt: 'DENTRA scan screen introducing the guided nine-photo capture steps (prototype)' },
 ];
 
 export default function Hero() {

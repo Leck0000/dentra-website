@@ -3,9 +3,9 @@ import { shot, shot2x } from '../components/phone';
 import Reveal from './reveal';
 
 const steps = [
-  { tag: '01', title: 'Capture', icon: 'camera', body: 'Guided steps help you photograph your teeth, one view at a time. This part is a prototype, so results are demo values for now.', screen: 'scan', alt: 'Guided capture screen with five photo regions (prototype)' },
+  { tag: '01', title: 'Capture', icon: 'camera', body: 'Guided steps help you photograph your teeth, one view at a time. This part is a prototype, so results are demo values for now.', screen: 'scan', alt: 'DENTRA scan screen introducing the guided nine-photo capture steps (prototype)' },
   { tag: '02', title: 'Understand', icon: 'chat', body: 'Read what common treatments involve, or ask the AI assistant in plain language.', screen: 'rabi', alt: 'AI assistant screen with suggested questions' },
-  { tag: '03', title: 'Act', icon: 'pin', body: 'Find real clinics around you, nearest first. Call or get directions.', screen: 'clinics', alt: 'Clinics list sorted by distance' },
+  { tag: '03', title: 'Act', icon: 'pin', body: 'Find real clinics around you, nearest first. Call or get directions.', screen: 'clinics', alt: 'DENTRA clinic finder showing nearby dental clinics on a map and in a list' },
 ];
 
 export default function HowItWorks() {
