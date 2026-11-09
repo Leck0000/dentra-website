@@ -202,24 +202,38 @@ span.store-badge { cursor: default; }
 .head { max-width: 760px; margin-bottom: 56px; }
 .head.center { margin-left: auto; margin-right: auto; text-align: center; }
 
-/* ---------- Device (scroll-driven exploded view) ---------- */
-.device-track { position: relative; height: 900vh; }
+/* ---------- Device (scroll-driven 3D exploded view) ---------- */
+/* .device-track height is set inline from the step count (DeviceExplodedView.jsx). */
+.device-track { position: relative; }
 .device-stage {
   position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
   padding-top: calc(var(--safe-top) + 64px);
 }
-.device-grid { position: relative; height: 100%; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 8px; padding-bottom: calc(var(--safe-bottom) + 20px); }
+.device-grid { position: relative; z-index: 1; height: 100%; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 8px; padding-bottom: calc(var(--safe-bottom) + 20px); }
 @media (min-width: 900px) {
   .device-grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); grid-template-rows: minmax(0, 1fr); align-items: center; gap: 48px; padding-bottom: 24px; }
 }
 .device-viewport { position: relative; height: 100%; min-height: 0; }
-.device-rig { position: absolute; left: 50%; top: 50%; width: 360px; height: 92px; transform-origin: 0 0; will-change: transform; }
-.device-part { position: absolute; left: 0; top: 0; width: 360px; height: 92px; will-change: transform; transition: opacity 0.45s var(--ease); }
-.device-part svg, .device-static-art svg { overflow: visible; max-width: none; }
-.device-part.is-dim { opacity: 0.4; }
-.device-part.is-hidden { opacity: 0; }
-.device-halo { opacity: 0; transition: opacity 0.45s var(--ease); }
-.device-part.is-active .device-halo { opacity: 1; }
+/* Soft mint light pooled behind the device, like the app's scan stage. */
+.device-viewport::before {
+  content: ""; position: absolute; inset: 6% 4%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(77, 216, 200, 0.2), rgba(77, 216, 200, 0.07) 55%, rgba(77, 216, 200, 0));
+}
+.device-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 0.5s ease; }
+/* The canvas fills the stage so parts run off the screen edges, not a box edge;
+   the device is framed in .device-viewport (see scene.resize). */
+.device-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s var(--ease); }
+/* A soft wash keeps the copy readable when a close-up runs behind it. */
+.device-panel { position: relative; }
+.device-panel::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset: -30px -16px -40px; background: linear-gradient(180deg, rgba(248, 253, 251, 0), rgba(248, 253, 251, 0.9) 34px);
+}
+@media (min-width: 900px) {
+  .device-panel::before { inset: -22% -40% -22% -18%; background: radial-gradient(closest-side, rgba(248, 253, 251, 0.92) 50%, rgba(248, 253, 251, 0)); }
+}
+.device[data-mode="live"] .device-canvas { opacity: 1; }
+.device[data-mode="live"] .device-poster { opacity: 0; }
 
 .device-eyebrow { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; color: var(--teal-text); font-size: 15px; font-weight: 600; }
 .device-tag { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--mint-2); background: var(--surface); color: var(--teal-text); font-size: 12px; font-weight: 600; }
@@ -240,7 +254,7 @@ span.store-badge { cursor: default; }
   .device-title { font-size: clamp(30px, 8vw, 40px); }
   .device-label h3 { font-size: 24px; margin: 2px 0 4px; }
   .device-label h3 + p, .device-label .device-title + p { font-size: 15px; }
-  .device-labels { margin-top: 8px; }
+  .device-labels { margin-top: 8px; min-height: 150px; }
 }
 
 .device-leader, .device-dot { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; will-change: transform; }
@@ -248,14 +262,15 @@ span.store-badge { cursor: default; }
 .device-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--g2); box-shadow: 0 0 0 4px rgba(77, 216, 200, 0.25); }
 .device-leader.on { opacity: 0.6; }
 .device-dot.on { opacity: 1; }
-@media (max-width: 899px) { .device-leader, .device-dot { display: none; } }
+.device:not([data-mode="live"]) .device-leader, .device:not([data-mode="live"]) .device-dot { display: none; }
+@media (max-width: 899px) { .device-leader { display: none; } }
 
 .device-static { display: none; padding: 120px 0; }
 .device-static .device-title { margin-top: 10px; }
-.device-static-list { display: grid; gap: 18px; margin: 40px 0 0; padding: 0; list-style: none; }
-.device-static-list li { display: grid; gap: 8px 28px; align-items: center; padding: 20px 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
-.device-static-art svg { width: 100%; max-width: 360px; height: auto; }
-@media (min-width: 760px) { .device-static-list li { grid-template-columns: 360px 1fr; } }
+.device-static-art { width: 100%; max-width: 560px; height: auto; margin: 32px auto 0; }
+.device-static-list { display: grid; gap: 14px; margin: 32px 0 0; padding: 0; list-style: none; }
+.device-static-list li { padding: 20px 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+@media (min-width: 760px) { .device-static-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (prefers-reduced-motion: reduce) {
   .device-track { display: none; }
   .device-static { display: block; }
