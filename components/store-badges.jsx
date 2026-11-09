@@ -34,7 +34,7 @@ export function HomeScreenBadge({ href = '#install', external = false }) {
     >
       <AppleLogo />
       <span>
-        <small>Add DENTRA to your</small>
+        <small className="caps">Add DENTRA to your</small>
         <strong>Home Screen</strong>
       </span>
     </a>
