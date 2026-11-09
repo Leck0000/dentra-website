@@ -29,12 +29,12 @@ export function HomeScreenBadge({ href = '#install', external = false }) {
     <a
       href={href}
       className="store-badge"
-      aria-label="Add DENTRA to your iPhone Home Screen"
+      aria-label="Add to your iPhone Home Screen"
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
     >
       <AppleLogo />
       <span>
-        <small className="caps">Add DENTRA to your</small>
+        <small className="caps">Add to your</small>
         <strong>Home Screen</strong>
       </span>
     </a>
